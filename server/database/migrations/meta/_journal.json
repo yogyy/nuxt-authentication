@@ -8,6 +8,20 @@
       "when": 1739282468846,
       "tag": "0000_curved_iron_fist",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1739545347049,
+      "tag": "0001_superb_phalanx",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1739548169012,
+      "tag": "0002_ancient_the_call",
+      "breakpoints": true
     }
   ]
 }
