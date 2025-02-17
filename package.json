@@ -11,6 +11,7 @@
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
+    "@node-rs/argon2": "^2.0.2",
     "@nuxthub/core": "^0.8.17",
     "@nuxtjs/color-mode": "3.5.2",
     "@oslojs/crypto": "^1.0.1",
