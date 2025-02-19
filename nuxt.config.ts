@@ -22,4 +22,11 @@ export default defineNuxtConfig({
   },
   colorMode: { classSuffix: "" },
   features: { devLogs: false },
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ["@node-rs/argon2"],
+      },
+    },
+  },
 });
