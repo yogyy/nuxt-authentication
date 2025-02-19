@@ -1,10 +1,14 @@
-<script lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  // as a string,
+  // where `%s` is replaced with the title
+  titleTemplate: "%s - My Aplikasiku",
+});
+</script>
 
 <template>
   <NuxtLayout>
-    <div
-      class="min-h-dvh overflow-hidden sm:mt-14 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-      <NuxtPage />
-    </div>
+    <NuxtPage />
   </NuxtLayout>
+  <Toaster />
 </template>
