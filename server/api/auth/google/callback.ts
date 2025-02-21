@@ -27,8 +27,6 @@ export default defineEventHandler(async (event) => {
 
     const user: GoogleOAuthResponse = await response.json();
 
-    console.log(tokens);
-
     const userExists = await getUserByEmail(user.email, "google");
     if (userExists) {
       const token = generateSessionToken();
@@ -55,8 +53,6 @@ export default defineEventHandler(async (event) => {
     return sendRedirect(event, "/home");
   } catch (e) {
     if (e instanceof OAuth2RequestError) {
-      const code = e.code;
-      console.log(code);
       throw createError({
         statusCode: 500,
         statusMessage: e.message,
