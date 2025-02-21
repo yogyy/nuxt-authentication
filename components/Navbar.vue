@@ -51,15 +51,20 @@ const logout = async () => {
             class="h-full rounded-full p-0 active:border-border border-transparent focus-within:border-border"
           >
             <MenubarMenu>
-              <MenubarTrigger class="rounded-full p-0">
+              <MenubarTrigger
+                class="rounded-full p-0 data-[state=open]:bg-transparent data-[highlighted]:bg-transparent data-[state=open]:text-accent data-[highlighted]:text-accent"
+              >
                 <Avatar class="h-7 w-7" v-if="data?.user">
                   <AvatarImage
-                    src="https://avatars.githubusercontent.com/u/62535762?v=4"
+                    :src="
+                      data?.user?.avatar ??
+                      'https://avatars.githubusercontent.com/u/62535762?v=4'
+                    "
                     alt="@yogyy github avatar"
                   />
                   <AvatarFallback>YG</AvatarFallback>
                 </Avatar>
-                <IconsPerson v-else class="h-5 w-5" />
+                <IconsPerson v-else class="h-5 w-5 bg-transparent" />
               </MenubarTrigger>
               <MenubarContent
                 align="end"

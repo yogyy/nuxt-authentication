@@ -16,14 +16,16 @@ export const users = sqliteTable(
   {
     id: text("id").primaryKey(),
     name: text("name").notNull(),
-    email: text("email").notNull().unique(),
-    password: text("password").notNull(),
-    avatar: text("avatar").notNull().default(""),
-    createdAt: integer("created_at")
-      .notNull()
-      .default(sql`(current_timestamp)`),
+    email: text("email").notNull(),
+    password: text("password"),
+    avatar: text("avatar"),
+    provider: text("provider", {
+      enum: ["credentials", "google", "discord"],
+    }).notNull(),
+    providerId: text("provider_id"),
+    createdAt: integer("created_at").default(sql`(current_timestamp)`),
   },
-  (table) => [uniqueIndex("emailUniqueIndex").on(lower(table.email))]
+  (t) => [uniqueIndex("emailUniqueIndex").on(t.email, t.provider)]
 );
 
 export const sessions = sqliteTable("session", {
