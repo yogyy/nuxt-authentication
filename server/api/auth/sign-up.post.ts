@@ -8,8 +8,14 @@ export default defineEventHandler(async (event) => {
 
   try {
     const userId = generateRandId("u");
-    const hash = await hashPassword(password);
-    await createUser(email, userId, name, hash, avatar);
+    await createUser({
+      email: email.toLowerCase(),
+      id: userId,
+      name,
+      password,
+      avatar,
+      provider: "credentials",
+    });
 
     const token = generateSessionToken();
     const session = await createSession(token, userId);

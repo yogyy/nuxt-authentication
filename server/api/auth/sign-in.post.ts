@@ -7,10 +7,10 @@ export default defineEventHandler(async (event) => {
   );
 
   try {
-    const user = await getUserByEmail(email);
+    const user = await getUserByEmail(email, "credentials");
     if (!user) throw InvalidCredentialsError;
 
-    const isPasswordValid = await verifyPasswordHash(user.password, password);
+    const isPasswordValid = user.password === password;
     if (!isPasswordValid) throw InvalidCredentialsError;
 
     const token = generateSessionToken();
