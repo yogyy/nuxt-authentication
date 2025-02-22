@@ -57,8 +57,9 @@ const logout = async () => {
                 <Avatar class="h-7 w-7" v-if="data?.user">
                   <AvatarImage
                     :src="
-                      data?.user?.avatar ??
-                      'https://avatars.githubusercontent.com/u/62535762?v=4'
+                      data?.user?.avatar
+                        ? data?.user?.avatar
+                        : 'https://avatars.githubusercontent.com/u/62535762?v=4'
                     "
                     alt="@yogyy github avatar"
                   />
