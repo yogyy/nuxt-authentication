@@ -2,6 +2,7 @@
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import { SignInSchema } from "@/lib/schemas/auth.schema";
+import { toast } from "vue-sonner";
 
 definePageMeta({ middleware: ["not-authenticated"], layout: false });
 useHead({ title: "Login bang" });
@@ -9,13 +10,15 @@ useHead({ title: "Login bang" });
 const loginSchema = toTypedSchema(SignInSchema);
 const form = useForm({ validationSchema: loginSchema });
 const onSubmit = form.handleSubmit(async (values) => {
-  const res = await $fetch("/api/auth/sign-in", {
-    method: "POST",
-    body: JSON.stringify(values),
-    headers: { "Content-type": "application/json" },
-  });
-
-  if (res?.success) navigateTo("/");
+  try {
+    const res = await $fetch("/api/auth/sign-in", {
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+    if (res?.success) navigateTo("/");
+  } catch (err: any) {
+    toast.error(err.data.message);
+  }
 });
 </script>
 

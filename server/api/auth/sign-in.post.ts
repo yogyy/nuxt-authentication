@@ -8,10 +8,14 @@ export default defineEventHandler(async (event) => {
 
   try {
     const user = await getUserByEmail(email, "credentials");
-    if (!user) throw InvalidCredentialsError;
+    if (!user) {
+      return setResponseStatus(event, 401, "Invalid credentials");
+    }
 
     const isPasswordValid = user.password === password;
-    if (!isPasswordValid) throw InvalidCredentialsError;
+    if (!isPasswordValid) {
+      return setResponseStatus(event, 401, "Invalid credentials");
+    }
 
     const token = generateSessionToken();
     const session = await createSession(token, user.id);
@@ -23,9 +27,4 @@ export default defineEventHandler(async (event) => {
     setResponseStatus(event, 500, "Internal Server Error");
     return;
   }
-});
-
-const InvalidCredentialsError = createError({
-  statusCode: 401,
-  statusMessage: "Invalid credentials",
 });
