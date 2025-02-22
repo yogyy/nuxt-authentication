@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ middleware: ["authenticated"] });
 const { data } = useFetch("/api/auth/me");
-const url = useRequestURL();
+useHead({ title: data.value?.user?.name });
 </script>
 
 <template>
