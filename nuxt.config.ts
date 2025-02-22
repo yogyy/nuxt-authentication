@@ -22,4 +22,12 @@ export default defineNuxtConfig({
   },
   colorMode: { classSuffix: "" },
   features: { devLogs: false },
+  runtimeConfig: {
+    discordClientId: process.env.DISCORD_CLIENT_ID,
+    discordClientSecret: process.env.DISCORD_CLIENT_SECRET,
+    discordRedirectUri: process.env.DISCORD_REDIRECT_URI,
+    googleClientId: process.env.GOOGLE_CLIENT_ID,
+    googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    googleRedirectUri: process.env.GOOGLE_REDIRECT_URI,
+  },
 });
